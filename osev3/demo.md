@@ -56,10 +56,9 @@ Username: admin
 Password:
 Login successful.
 
-oc project openshift
-oc create -f https://github.com/rafaeltuelho/custom-jenkins-ose-config/blob/master/custom-jenkins.build.yaml
+oc create -f https://raw.githubusercontent.com/redhat-helloworld-msa/jenkins/master/custom-jenkins.build.yaml
 
-oc start-build custom-jenkins-pipeline-build --follow
+oc start-build custom-jenkins-build --follow
 
 ```
 
@@ -83,7 +82,7 @@ oc new-app -p MEMORY_LIMIT=1024Mi https://raw.githubusercontent.com/openshift/or
   * create the Nexus app using the `nexus-persistent` template
 
   ```
-  oc create -f https://raw.githubusercontent.com/rafaeltuelho/nexus-ose/master/nexus/ose3/nexus-resources.json -n ci
+  oc create -f https://raw.githubusercontent.com/jorgemoralespou/nexus-ose/master/nexus/ose3/nexus-resources.json -n ci
   oc volumes dc/nexus --add --claim-size=3Gi --mount-path=/sonatype-work --claim-name=nexus-claim --name=pvol03
   oc new-app --template=nexus-persistent --param=APPLICATION_HOSTNAME=nexus-ci.cdk.vm.10.2.2.2.xip.io,SIZE=5Gi
   ```
